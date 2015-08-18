@@ -1,51 +1,45 @@
-#include <list>
 #include <string>
-#ifndef DIGRAPH
-#define DIGRAPH
+#include <list>
+#include "edge.hxx"
+#include "vertex.hxx"
 
-class Edge {
-    Vertex _front;
-    Vertex _back;
-    int _value;
-
-public:
-    Edge(Vertex front, Vertex back, int value = 0);
-    Vertex front();
-    Vertex back();
-    void setFront(Vertex v);
-    void setBack(Vertex v);
-    virtual ~Edge();
-};
-
-class Vertex {
-    std::list<Edge> _edgesA; //antecessors
-    std::list<Edge> _edgesS; //suceessors
-    int _id;
-
-public:
-
-    enum Type {A, E}
-
-    Vertex(int id = 0);
-    addEdge(Edge e, Type t);
-    std::list<Vertex> getAll(Type t);
-    virtual ~Vertex();
-};
+#ifndef DIGRAPH_HXX
+#define DIGRAPH_HXX
 
 class Digraph {
+protected:
     std::list<Edge> _edges;
     std::list<Vertex> _vertices;
+    string _name;
 
+    bool contains(Vertex v);
 public:
+
     Digraph(string name = NULL);
-    virtual ~Digraph();
+    
     void addVertex(Vertex v);
-    void connect(Vertex a, Vertex b);
     void remVertex(Vertex v);
+    
+    void connect(Vertex a, Vertex b);
     void disconnect(Vertex a, Vertex b);
+    
     std::list<Vertex> successor(Vertex v);
     std::list<Vertex> atecessor(Vertex v);
+    
+    int degree_of_issuance(Vertex v);
+    int degree_of_reception(Vertex v);
 
+    int order() {
+        return _vertices.size();
+    }
+
+    string getName(){
+        return _name;
+    }
+    
+    Vertex aVertex();
+    
+    virtual ~Digraph();
 };
 
 #endif
