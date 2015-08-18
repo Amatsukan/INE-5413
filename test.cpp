@@ -1,10 +1,11 @@
 #include "digraph.hxx"
 #include "gtest/gtest.h"
+#include <string>
 //#include <chrono>
 
 class DigraphTest : public testing::Test {
 public:
-    Digraph d("test");
+    Digraph d(std::string("test"));
 };
 
 TEST_F(DigraphTest, isCreatedEmpty) {
@@ -18,4 +19,9 @@ TEST_F(DigraphTest, orderUp) {
     d.addVertex(Vertex());
     d.addVertex(Vertex());  
     EXPECT_EQ(3, d.order());
+}
+
+int main(int argc, char** argv) {
+	testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
 }

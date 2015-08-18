@@ -3,6 +3,8 @@
 #ifndef EDGE_HXX
 #define	EDGE_HXX
 
+#include "vertex.hxx"
+
 class Vertex;
 
 class Edge {

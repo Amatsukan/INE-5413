@@ -1,21 +1,21 @@
+#ifndef DIGRAPH_HXX
+#define DIGRAPH_HXX
+
 #include <string>
 #include <list>
 #include "edge.hxx"
 #include "vertex.hxx"
 
-#ifndef DIGRAPH_HXX
-#define DIGRAPH_HXX
-
 class Digraph {
 protected:
     std::list<Edge> _edges;
     std::list<Vertex> _vertices;
-    string _name;
+    std::string _name;
 
     bool contains(Vertex v);
 public:
 
-    Digraph(string name = NULL);
+    Digraph(std::string name = NULL);
     
     void addVertex(Vertex v);
     void remVertex(Vertex v);
@@ -33,7 +33,7 @@ public:
         return _vertices.size();
     }
 
-    string getName(){
+    std::string getName(){
         return _name;
     }
     

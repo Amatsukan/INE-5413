@@ -3,11 +3,13 @@
 #ifndef VERTEX_HXX
 #define	VERTEX_HXX
 
+#include "edge.hxx"
+
 class Edge;
 
 class Vertex {
-    std::list<Edge> _edgesA; //antecessors
-    std::list<Edge> _edgesS; //suceessors
+    std::list<Edge*> _edgesA; //antecessors
+    std::list<Edge*> _edgesS; //suceessors
     unsigned int _id;
     static unsigned int _SERIAL_NUMBER_;
 public:
@@ -28,7 +30,7 @@ public:
 
     void addEdge(Edge e, Type t);
 
-    std::list<Edge> getAll(Type t) {
+    std::list<Edge*> getAll(Type t) {
         if (t == Type::EMIT) {
             return _edgesS;
         }

@@ -1,5 +1,4 @@
 #include "edge.hxx"
-#include "vertex.hxx"
 
 //Edge methods implementations
 
@@ -20,5 +19,9 @@ void Edge::setFront(Vertex v) {
 
 void Edge::setBack(Vertex v) {
     _back = &v;
+}
+
+Edge::~Edge(){
+    
 }
 
