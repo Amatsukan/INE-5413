@@ -2,22 +2,35 @@
 
 //Edge methods implementations
 
-Edge::Edge(Vertex front, Vertex back, int value) :
-_front(&front), _back(&back), _value(value) {}
+Edge::Edge(Vertex sender, Vertex receiver, int value) :
+_front(&sender), _back(&receiver), _value(value) {}
 
-Vertex Edge::front() {
+Edge::Edge(const Edge& e):
+        _front((e.sender())),
+        _back((e.receiver())), 
+        _value(e.getValue()){}
+
+Vertex Edge::sender(){
     return *_front;
 }
 
-Vertex Edge::back() {
+Vertex* Edge::sender() const{
+    return _front;
+}
+
+Vertex Edge::receiver(){
     return *_back;
 }
 
-void Edge::setFront(Vertex v) {
+Vertex* Edge::receiver() const{
+    return _back;
+}
+
+void Edge::setSender(Vertex v) {
     _front = &v;
 }
 
-void Edge::setBack(Vertex v) {
+void Edge::setReceiver(Vertex v) {
     _back = &v;
 }
 

@@ -1,16 +1,20 @@
-#include <list>
-
 #ifndef VERTEX_HXX
 #define	VERTEX_HXX
+
+#include <unordered_map>
 
 #include "edge.hxx"
 
 class Edge;
 
 class Vertex {
-    std::list<Edge*> _edgesA; //antecessors
-    std::list<Edge*> _edgesS; //suceessors
+    std::unordered_map<int, Edge*> _edgesA; //antecessors
+    std::unordered_map<int, Edge*> _edgesS; //suceessors
     unsigned int _id;
+    
+    unsigned int EDGE_SERIAL_IN;
+    unsigned int EDGE_SERIAL_OUT;
+    
     static unsigned int _SERIAL_NUMBER_;
 public:
     Vertex(int id = _SERIAL_NUMBER_++);
@@ -19,7 +23,7 @@ public:
         EMIT, RECEPT
     };
 
-    unsigned int getId() {
+    unsigned int getId() const{
         return _id;
     }
 
@@ -29,8 +33,10 @@ public:
      */
 
     void addEdge(Edge e, Type t);
+    
+    Vertex get_adjacent_vertex(int internal_id, Type t);
 
-    std::list<Edge*> getAll(Type t) {
+    std::unordered_map<int, Edge*> getAll(Type t) {
         if (t == Type::EMIT) {
             return _edgesS;
         }
