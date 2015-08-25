@@ -10,10 +10,7 @@ class Edge;
 class Vertex {
     std::unordered_map<int, Edge*> _edgesA; //antecessors
     std::unordered_map<int, Edge*> _edgesS; //suceessors
-    unsigned int _id;
-    
-    unsigned int EDGE_SERIAL_IN;
-    unsigned int EDGE_SERIAL_OUT;
+    unsigned int _id; 
     
     static unsigned int _SERIAL_NUMBER_;
 public:
@@ -33,6 +30,8 @@ public:
      */
 
     void addEdge(Edge e, Type t);
+    
+    void remEdge(Edge e, Type t);
     
     Vertex get_adjacent_vertex(int internal_id, Type t);
 

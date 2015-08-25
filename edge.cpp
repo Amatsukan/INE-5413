@@ -2,13 +2,16 @@
 
 //Edge methods implementations
 
-Edge::Edge(Vertex sender, Vertex receiver, int value) :
-_front(&sender), _back(&receiver), _value(value) {}
+unsigned int Edge::_SERIAL_NUMBER_(0);
+
+Edge::Edge(Vertex sender, Vertex receiver, int id, int value) :
+_front(&sender), _back(&receiver), _value(value), _id(id) {}
 
 Edge::Edge(const Edge& e):
         _front((e.sender())),
         _back((e.receiver())), 
-        _value(e.getValue()){}
+        _value(e.getValue()),
+        _id(e.getId()){}
 
 Vertex Edge::sender(){
     return *_front;

@@ -6,17 +6,23 @@ unsigned int Vertex::_SERIAL_NUMBER_(0);
 Vertex::Vertex(int id) :
         _id(id),
         _edgesA(std::unordered_map<int, Edge*>()),
-        _edgesS(std::unordered_map<int, Edge*>()),
-        EDGE_SERIAL_OUT(0),
-        EDGE_SERIAL_IN(0)
+        _edgesS(std::unordered_map<int, Edge*>())
 {}
 
 
 void Vertex::addEdge(Edge e, Type t){
     switch(t){
-        case Type::EMIT : _edgesS[EDGE_SERIAL_OUT++] = &e;
+        case Type::EMIT : _edgesA[e.getId()] = &e;
             return;
-        case Type::RECEPT: _edgesS[EDGE_SERIAL_IN++] = &e;
+        case Type::RECEPT: _edgesS[e.getId()] = &e;
+    }
+}
+
+void Vertex::remEdge(Edge e, Type t){
+    switch(t){
+        case Type::EMIT : _edgesA.erase(e.getId());
+            return;
+        case Type::RECEPT: _edgesS.erase(e.getId());
     }
 }
 
